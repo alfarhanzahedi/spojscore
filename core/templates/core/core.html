@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A web application that lists the score associated with every problem on SPOJ.">
+    <meta name="keywords" content="score of spoj problems, points of spoj problems">
+    <meta name="author" content="Alfarhan Zahedi">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Roboto"> 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+    <title>Spoj Score</title>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'core/img/favicon.png' %}">
+</head>
+
+<body>
+    <div class="container" style="padding-top: 20px; ">
+        {% load static %}
+        <img src="{% static 'core/img/logo.png' %}" alt="" class="img-responsive"/>
+    </div>
+    <div class="container">
+        <p class="info">The problems are sorted in non-increasing order on the number of unqiue successfull submissions.</p>
+    </div>
+    <div class="container">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>CODE</th>
+                    <th>USERS</th>
+                    <th>SCORE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for problem in problems %}
+                <tr>
+                    <td><a href="http://spoj.com/problems/{{problem.code}}" target="_blank">{{problem.name}}</a></td>
+                    <td>{{problem.code}}</td>
+                    <td>{{problem.users}}</td>
+                    <td>{{problem.score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
